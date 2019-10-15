@@ -55,6 +55,33 @@ app.delete("/delete/:id",function(req,res){
     })
 });
 
-app.listen(6000, function () {
-    console.log('Express server is listening on port 6000');
+
+
+
+//  ROUTES FOR EXERCISES.......
+
+app.post("/exercisData", (req,res)=>{
+    knex('coursesExercise').insert({courseId:req.body.courseId,ExercisName: req.body.ExercisName,Description: req.body.Description,Content:req.body.Content,Hint:req.body.Hint}).then(()=>{
+        knex.select("*").from("coursesExercise").then((data)=>{
+            res.send(data)
+        })
+    }).catch(()=>{
+        console.log("ERROR-----------------")
+    })
+});
+
+
+
+// get data..
+app.get("/getDatas/:id",(req,res)=>{
+    var id = req.params.id;
+    var courseId = req.params.courseId;
+    knex.select('*').from('coursesExercise').where('id', id ).then((data)=>{
+        res.send(data)
+    })
+});
+
+
+app.listen(9000, function () {
+    console.log('Express server is listening on port 9000');
 });

@@ -15,6 +15,8 @@ knex.schema.createTable('coursesExercise', (table)=>{
   table.integer('courseId')
   table.string('ExercisName')
   table.string('Description')
+  table.string('Content')
+  table.string('Hint')
 })
 .then(() => console.log("table created"))
   .catch((err) => { console.log(err); throw err })
