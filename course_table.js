@@ -10,9 +10,10 @@ var knex = require('knex')({
 });
 
 
-knex.schema.createTable('courses', (table)=>{
-    table.increments('id')
-  table.string('Course-name')
+knex.schema.createTable('coursesExercise', (table)=>{
+  table.increments('id')
+  table.integer('courseId')
+  table.string('ExercisName')
   table.string('Description')
 })
 .then(() => console.log("table created"))
